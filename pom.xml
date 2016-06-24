@@ -2,7 +2,7 @@
 <!--
  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
- Copyright (c) 2011-2014 ForgeRock AS. All rights reserved.
+ Copyright (c) 2011-2016 ForgeRock AS. All rights reserved.
 
  The contents of this file are subject to the terms
  of the Common Development and Distribution License
@@ -35,11 +35,11 @@
     <packaging>bundle</packaging>
     <name>Database Table Connector</name>
     <description>Database table connector use a single database table to store the Account attributes.</description>
-    <url>https://openicf.forgerock.org/connectors/databasetable-connector</url>
+    <url>http://openicf.forgerock.org/connectors/databasetable-connector/</url>
     <scm>
-        <connection>scm:svn:https://svn.forgerock.org/openicf/branches/openicf-databasetable-connector-1.1.0.x</connection>
-        <developerConnection>scm:svn:https://svn.forgerock.org/openicf/branches/openicf-databasetable-connector-1.1.0.x</developerConnection>
-        <url>http://sources.forgerock.org/browse/openicf/branches/openicf-databasetable-connector-1.1.0.x</url>
+        <connection>scm:git:ssh://git@stash.forgerock.org:7999/openicf/databasetable-connector.git</connection>
+        <developerConnection>scm:git:ssh://git@stash.forgerock.org:7999/openicf/databasetable-connector.git</developerConnection>
+        <url>http://stash.forgerock.org/projects/OPENICF/repos/databasetable-connector/browse</url>
     </scm>
     <issueManagement>
         <system>jira</system>
@@ -47,20 +47,14 @@
     </issueManagement>
     <ciManagement>
         <system>jenkins</system>
-        <url>http://builds.forgerock.org/job/OpenICF - DatabaseTable Connector 1.1.0.x branch</url>
+        <url>https://ci.forgerock.org/view/OpenICF/job/OpenICF - databasetable-connector - postcommit/</url>
     </ciManagement>
-    <properties>   
-	    <framework.compatibilityVersion>1.1</framework.compatibilityVersion>
-        <framework.version>1.1.2.0</framework.version>
+    <properties>
         <openicf.osgi.embed>dbcommon</openicf.osgi.embed>
         <connectorPackage>org.identityconnectors.databasetable</connectorPackage>
         <connectorClass>DatabaseTableConnector</connectorClass>
-        <jira.componentIds>10174</jira.componentIds>
-        <jira.versionPrefix>${project.artifactId}</jira.versionPrefix>
-        <!-- If we release this project, we need to include the Forgerock binary license -->
-        <include.binary.license>
-            ${project.build.directory}/maven-shared-archive-resources/legal-notices
-        </include.binary.license>
+        <framework.compatibilityVersion>1.1</framework.compatibilityVersion>
+        <framework.releaseVersion>2.0</framework.releaseVersion>
     </properties>
     <repositories>
         <repository>
@@ -82,11 +76,16 @@
     </repositories>
     <dependencies>
         <dependency>
+            <groupId>org.forgerock.openicf.framework</groupId>
+            <artifactId>connector-framework</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.forgerock.openicf.connectors.misc</groupId>
             <artifactId>dbcommon</artifactId>
             <version>1.1.0.0</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -106,7 +105,7 @@
         <dependency>
             <groupId>org.forgerock.openicf.framework</groupId>
             <artifactId>connector-framework-contract</artifactId>
-            <version>1.1.2.0</version>
+            <version>${framework.compatibilityVersion}.${framework.releaseVersion}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
